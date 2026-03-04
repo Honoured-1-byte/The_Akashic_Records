@@ -193,7 +193,13 @@ async function generateBotPost() {
             finalImageUrl = "";
         }
 
-        // If finalImageUrl is empty, the frontend will automatically use the persona-specific default banners!
+        // STAGE 2: THE "STAGNATION KILLER" (PICSUM)
+        if (!finalImageUrl) {
+            console.log("🚨 All AI sources offline. Using unique seeded photo.");
+            // This ensures that even without AI, every post gets a UNIQUE professional photo.
+            finalImageUrl = `https://picsum.photos/seed/${seed}/1280/720`;
+        }
+
         // 4. Save to Database
         const newBlog = new Blog({
             title: blogData.title,
