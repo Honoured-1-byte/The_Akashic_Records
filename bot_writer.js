@@ -166,8 +166,8 @@ async function generateBotPost() {
 
         console.log(`🎨 Generated URL: ${aiImageUrl}`); // PRINT THE URL FOR DEBUGGING
 
-        // 🕵️‍♂️ AGGRESSIVE VALIDATION
-        let validImageUrl = aiImageUrl;
+        // 🕵️‍♂️ STAGE 1: POLLINATIONS AGGRESSIVE VALIDATION
+        let finalImageUrl = aiImageUrl;
 
         try {
             // USE GET instead of HEAD (HEAD usually returns null size for dynamic AI images)
@@ -184,20 +184,21 @@ async function generateBotPost() {
             // 1. Check if it's actually an image
             if (!type || !type.startsWith('image')) {
                 console.warn(`⚠️ API returned ${type} (Not an image). Switching to Default.`);
-                validImageUrl = "";
-            }else {
+                finalImageUrl = "";
+            } else {
                 console.log("✅ AI Art Verified & Live.");
             }
         } catch (imgError) {
             console.warn(`⚠️ Validation Network Error: ${imgError.message}`);
-            validImageUrl = "";
+            finalImageUrl = "";
         }
 
+        // If finalImageUrl is empty, the frontend will automatically use the persona-specific default banners!
         // 4. Save to Database
         const newBlog = new Blog({
             title: blogData.title,
             body: blogData.body,
-            coverImageURL: validImageUrl,
+            coverImageURL: finalImageUrl,
             createdBy: bot.id,
         });
 

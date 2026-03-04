@@ -22,8 +22,10 @@
                     fallbackImage='/images/defaultBlog.png' ; const creatorId=blog.createdBy ? (blog.createdBy._id ||
                     blog.createdBy).toString() : null; if (creatorId && defaultImages[creatorId]) {
                     fallbackImage=defaultImages[creatorId]; } %>
-                    <img src="<%= blog.coverImageURL || fallbackImage %>" alt="<%= blog.title %> Cover"
-                        class="position-absolute w-100 h-100" style="object-fit: cover; z-index: 0; top: 0; left: 0;"
+                    <!-- If coverImageURL exists, use it. Otherwise, use persona-specific fallback -->
+                    <img src="<%= (blog.coverImageURL && blog.coverImageURL.trim() !== '') ? blog.coverImageURL : fallbackImage %>"
+                        alt="<%= blog.title %> Cover" class="position-absolute w-100 h-100"
+                        style="object-fit: cover; z-index: 0; top: 0; left: 0;"
                         onerror="this.onerror=null;this.src='<%= fallbackImage %>';">
 
                     <div class="banner-overlay position-relative" style="z-index: 1;">

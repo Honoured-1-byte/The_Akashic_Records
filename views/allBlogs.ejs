@@ -26,24 +26,32 @@
             </div>
 
             <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                <% blogs.forEach(blog=> { %>
-                    <div class="col">
-                        <div class="card h-100 bg-dark text-white border-secondary shadow-sm hover-card">
-                            <img src="<%= (blog.coverImageURL && blog.coverImageURL.includes('/upload/')) ? blog.coverImageURL.replace('/upload/', '/upload/f_jpg,q_auto,w_600/') : blog.coverImageURL %>"
-                                class="card-img-top" style="height: 220px; object-fit: cover;" alt="<%= blog.title %>"
-                                onerror="fallbackBlogImage(this, '<%= (blog.createdBy && blog.createdBy._id) ? blog.createdBy._id : blog.createdBy %>')">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <%= blog.title %>
-                                </h5>
-                                <p class="card-text text-secondary small">
-                                    By <%= blog.createdBy ? blog.createdBy.fullName : 'Unknown' %>
-                                </p>
-                                <a href="/blog/<%= blog._id %>" class="stretched-link"></a>
+                <% function getFallbackImage(blog) { const defaultImages={ "693dc46dd348ddc001c50af9"
+                    : "/images/default_ashvashira.jpg" , "693dc57bd348ddc001c50b02" : "/images/default_yantrik.jpg"
+                    , "693dc5fcd348ddc001c50b0f" : "/images/default_otaku.jpg" , "6935b54cec77d3663f57f863"
+                    : "/images/default_sutradhar.jpg" , "6944f46d02303e61a6d0a343" : "/images/default_ayur.jpg" }; const
+                    creatorId=blog.createdBy ? (blog.createdBy._id || blog.createdBy).toString() : null; return
+                    (creatorId && defaultImages[creatorId]) ? defaultImages[creatorId] : '/images/defaultBlog.png' ; }
+                    %>
+                    <% blogs.forEach(blog=> { %>
+                        <div class="col">
+                            <div class="card h-100 bg-dark text-white border-secondary shadow-sm hover-card">
+                                <img src="<%= (blog.coverImageURL && blog.coverImageURL.trim() !== '') ? (blog.coverImageURL.includes('/upload/') ? blog.coverImageURL.replace('/upload/', '/upload/f_jpg,q_auto,w_600/') : blog.coverImageURL) : getFallbackImage(blog) %>"
+                                    class="card-img-top" style="height: 220px; object-fit: cover;"
+                                    alt="<%= blog.title %>"
+                                    onerror="fallbackBlogImage(this, '<%= (blog.createdBy && blog.createdBy._id) ? blog.createdBy._id : blog.createdBy %>')">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= blog.title %>
+                                    </h5>
+                                    <p class="card-text text-secondary small">
+                                        By <%= blog.createdBy ? blog.createdBy.fullName : 'Unknown' %>
+                                    </p>
+                                    <a href="/blog/<%= blog._id %>" class="stretched-link"></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <% }) %>
+                        <% }) %>
             </div>
         </div>
 

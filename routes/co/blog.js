@@ -203,9 +203,7 @@ router.get('/:id', async (req, res) => {
         // --- URL NORMALIZATION FIX ---
         // Only force default if it's missing entirely. 
         // Don't force "/" prefix because Cloudinary URLs start with "http"
-        if (!blog.coverImageURL) {
-            blog.coverImageURL = '/images/defaultBlog.png';
-        }
+        // Ensure URL stays empty if missing, so EJS templates can handle persona-specific fallbacks
 
         // Handle Author Profile Image
         if (blog.createdBy) {
