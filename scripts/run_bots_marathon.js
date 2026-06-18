@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 
 // Import the bot writer logic (Assuming I can require it, or I will copy the core logic)
 // Since bot_writer.js executes immediately upon require, we can't just require it multiple times in a loop easily

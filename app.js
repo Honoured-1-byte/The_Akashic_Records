@@ -3,8 +3,8 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const userRoutes = require('./routes/co/user');
-const blogRoutes = require('./routes/co/blog');
+const userRoutes = require('./routes/user');
+const blogRoutes = require('./routes/blog');
 const Blog = require('./models/blog');
 
 const { checkForAuthenticationCookie } = require('./middlewares/authentication');

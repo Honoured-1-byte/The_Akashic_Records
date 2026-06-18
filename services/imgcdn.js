@@ -1,4 +1,4 @@
-const IMGCDN_API_KEY = "5386e05a3562c7a8f984e73401540836";
+const IMGCDN_API_KEY = process.env.IMGCDN_API_KEY;
 const IMGCDN_URL = "https://imgcdn.dev/api/1/upload";
 
 /**

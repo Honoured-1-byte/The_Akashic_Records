@@ -3,8 +3,8 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs'); // Keep for safety, though used less now
 
-const Blog = require('../../models/blog');
-const Comment = require('../../models/comments');
+const Blog = require('../models/blog');
+const Comment = require('../models/comments');
 
 // --- CLOUDINARY SETUP ---
 const cloudinary = require("cloudinary").v2;
@@ -111,7 +111,7 @@ router.get("/save/:blogId", async (req, res) => {
     const blogId = req.params.blogId;
     const userId = req.user._id;
 
-    const User = require('../../models/user'); // Ensure User model is imported
+    const User = require('../models/user'); // Ensure User model is imported
 
     const user = await User.findById(userId);
     const isSaved = user.savedBlogs && user.savedBlogs.includes(blogId);

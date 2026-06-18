@@ -1,6 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 const mongoose = require('mongoose');
-const Blog = require('./models/blog'); // Ensure this path matches your model location
+const Blog = require('../models/blog'); // Ensure this path matches your model location
 
 // 1. CONFIGURATION
 const MONGO_URI = process.env.MONGO_URL; // Make sure your .env has this

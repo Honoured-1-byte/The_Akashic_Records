@@ -1,6 +1,6 @@
-require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 const mongoose = require('mongoose');
-const User = require('./models/user');
+const User = require('../models/user');
 
 const BOT_IDS = [
     "693dc46dd348ddc001c50af9", // Ashvashira

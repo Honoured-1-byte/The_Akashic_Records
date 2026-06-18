@@ -1,13 +1,13 @@
 const { Router } = require('express');
-const User = require('../../models/user');
-const Blog = require('../../models/blog');
+const User = require('../models/user');
+const Blog = require('../models/blog');
 const router = Router();
 
 const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
-const { uploadToImgCDN } = require('../../services/imgcdn');
-const { createTokenForUser } = require('../../services/authentication');
+const { uploadToImgCDN } = require('../services/imgcdn');
+const { createTokenForUser } = require('../services/authentication');
 
 // Helper for local fallback
 function saveBufferToLocal(buffer, originalname) {

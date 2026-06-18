@@ -1,6 +1,6 @@
-require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 const mongoose = require('mongoose');
-const User = require('./models/user');
+const User = require('../models/user');
 
 const BOTS = [
     {

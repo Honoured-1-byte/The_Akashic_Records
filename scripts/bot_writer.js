@@ -1,9 +1,9 @@
-require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 console.log("🚀 Initializing Bot Writer V2...");
 const mongoose = require('mongoose');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const dJSON = require('dirty-json'); // <--- THE FIXER
-const Blog = require('./models/blog');
+const Blog = require('../models/blog');
 
 // --- CONFIGURATION ---
 const MONGO_URL = process.env.MONGO_URL;
