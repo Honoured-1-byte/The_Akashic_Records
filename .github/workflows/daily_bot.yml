@@ -25,7 +25,7 @@ jobs:
       run: npm install --legacy-peer-deps
 
     - name: Run Bot Writer
-      run: node bot_writer.js
+      run: node scripts/bot_writer.js
       env:
         # We will add these secrets in the next step
         MONGO_URL: ${{ secrets.MONGO_URL }}
